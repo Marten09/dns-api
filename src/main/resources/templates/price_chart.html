@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>График изменения цены на видеокарты</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<canvas id="chart"></canvas>
+
+<script th:inline="javascript">
+    /* Получите данные о ценах на видеокарты из модели */
+    var prices = /*[[${prices}]]*/ [];
+
+    /* Создайте массив меток для оси X */
+    var labels = prices.map(function(price) {
+        return price.date;
+    });
+
+    /* Создайте массив данных для оси Y */
+    var data = prices.map(function(price) {
+        return price.averagePrice;
+    });
+
+    /* Создайте объект графика с использованием Chart.js */
+    var ctx = document.getElementById('chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Цена на видеокарты',
+                data: data,
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Дата'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Цена'
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
