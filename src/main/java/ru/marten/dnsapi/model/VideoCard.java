@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 @Table(name = "video_card")
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class VideoCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

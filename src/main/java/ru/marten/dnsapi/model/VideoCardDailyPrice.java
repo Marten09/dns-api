@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@NoArgsConstructor
 public class VideoCardDailyPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
